@@ -1,7 +1,7 @@
 <div class="row">
   <div 
     *ngFor="let person of firstRow,let i = index" class="card col" style="width: 18rem;"
-    [ngClass]="{'correct':person.name === person.resp}">
+    [ngClass]="{'correct':(person.name | uppercase) === (person.resp | uppercase)}">
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
       <input [disabled]="person.resp === person.name" type="text" class="form-control" [(ngModel)]="person.resp">
@@ -11,7 +11,7 @@
 <br />
 <div class="row">
   <div *ngFor="let person of secondRow" class="card col" style="width: 18rem;"
-  [ngClass]="{'correct':person.name === person.resp}">
+  [ngClass]="{'correct':(person.name | uppercase) === (person.resp | uppercase)}">
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
       <input [disabled]="person.resp === person.name" type="text" class="form-control" [(ngModel)]="person.resp">
