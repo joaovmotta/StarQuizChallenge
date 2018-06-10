@@ -2,22 +2,21 @@
 
 <div class="row">
   <div 
-    *ngFor="let person of firstRow,let i = index" class="card col" style="width: 18rem;">
-    
-    <img class="card-img-top" src="..." alt="Card image cap">
+    *ngFor="let person of firstRow,let i = index" class="card col" style="width: 18rem;"
+    [ngClass]="{'correct':person.name === person.resp}">
+    <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
-      {{person.name}}
-      <input type="text" class="form-control">
+      <input [disabled]="person.resp === person.name" type="text" class="form-control" [(ngModel)]="person.resp">
     </div>
   </div>
 </div>
 <br />
 <div class="row">
-  <div *ngFor="let person of secondRow" class="card col" style="width: 18rem;">
-      {{person.name}}
-    <img class="card-img-top" src="..." alt="Card image cap">
+  <div *ngFor="let person of secondRow" class="card col" style="width: 18rem;"
+  [ngClass]="{'correct':person.name === person.resp}">
+    <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
-      <input type="text" class="form-control">
+      <input [disabled]="person.resp === person.name" type="text" class="form-control" [(ngModel)]="person.resp">
     </div>
   </div>
 </div>

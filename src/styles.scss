@@ -11,6 +11,11 @@ body{
     src:url("assets/fonts/deathstar.otf");
 }
 
+.card{
+    border-color:white;
+    background-color:#000;
+}
+
 .btn-start{
     border-color: yellow;
     padding-top:15ṕx;
@@ -31,4 +36,14 @@ body{
 .container{
     text-align:center;
     margin-top:200px;
+}
+
+.correct{
+    background-color:green;
+}
+
+.card-img-top{
+    width:200px;
+    height:200px;
+    margin:0 auto;
 }
