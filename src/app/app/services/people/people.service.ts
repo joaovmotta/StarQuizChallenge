@@ -12,7 +12,7 @@ export class PeopleService {
 
   constructor(private http: HttpClient) { }
 
-  findAllPersons(){
-    return this.http.get<any>( this._linkService+"people" );
+  findAll(page){
+    return this.http.get<any>( this._linkService+"people?page="+page);
   }
 }

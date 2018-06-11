@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './app/components/card/card.component';
 import { RoutingModule } from "./app/router/app.router";
 import { HomeComponent } from './app/components/home-component/home.component';
+import { TimerComponent } from './app/components/timer/timer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    HomeComponent
+    HomeComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,

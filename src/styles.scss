@@ -3,7 +3,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 body{
-    background-color:#000;
+    background-image: url("assets/sky.png");
 }
 
 @font-face{
@@ -12,30 +12,25 @@ body{
 }
 
 .card{
-    border-color:white;
     background-color:#000;
-}
-
-.card{
-    border-color:white;
-    background-color:#000;
+    background-color: rgba(10,23,55,0);    
 }
 
 .btn-start{
-    border-color: yellow;
+    border:3px solid #fadb2d;
     padding-top:15ṕx;
     padding-bottom:15px;
     padding-left:25px;
     padding-right:25px;
     background-color:black;
-    color:yellow;
+    color:#fadb2d;
     font-family: "star-wars";
     text-align:center;
 }
 
 .btn-start:hover{
     color:#000;
-    background-color:yellow;
+    background-color:#fadb2d;
 }
 
 .container{
@@ -44,11 +39,19 @@ body{
 }
 
 .correct{
-    background-color:green;
+    background-color:#ADFF2F;
 }
 
 .card-img-top{
     width:200px;
     height:200px;
     margin:0 auto;
+}
+
+.timer{
+    color:#fadb2d;
+    font-family: "star-wars";
+    float:right;
+    font-size: 20pt;
+    margin-left: 1300px;
 }
