@@ -1,5 +1,5 @@
 <div class="row">
-  <app-timer [input]="'texto'" (output)="contador($event)"></app-timer>
+  <app-timer (onEndTimer)="endGame()"></app-timer>
 </div>
 
 <div class="row">
@@ -7,8 +7,9 @@
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
       <div class="row">
-        <input [disabled]="person.blockConfirm"  type="text" class="form-control col-md-8" [(ngModel)]="person.resp">
-        <button (click)="confirmAwnser(person)" [disabled]="!person.resp || person.blockConfirm" class="btn btn-success btn-check col-md-2"><fa name="check"></fa></button>
+        <input [disabled]="person.blockConfirm"  type="text" class="form-control col-md-8" [(ngModel)]="person.awnser">
+        <button (click)="confirmAwnser(person)" [disabled]="!person.awnser || person.blockConfirm"
+         class="btn btn-success btn-check col-md-2"><fa name="check"></fa></button>
         <button (click)="showPersonInfo(person)" class="btn btn-info col-md-2"><fa name="info"></fa></button>
       </div>
     </div>
@@ -20,8 +21,8 @@
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
       <div class="row">
-        <input [disabled]="person.blockConfirm" type="text" class="form-control col-md-8" [(ngModel)]="person.resp">
-        <button (click)="confirmAwnser(person)" [disabled]="!person.resp || person.blockConfirm" 
+        <input [disabled]="person.blockConfirm" type="text" class="form-control col-md-8" [(ngModel)]="person.awnser">
+        <button (click)="confirmAwnser(person)" [disabled]="!person.awnser || person.blockConfirm" 
         class="btn btn-success btn-check col-md-2"><fa name="check"></fa></button>
         <button (click)="showPersonInfo(person)" class="btn btn-info col-md-2"><fa name="info"></fa></button>
       </div>

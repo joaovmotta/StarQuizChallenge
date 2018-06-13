@@ -15,11 +15,11 @@ export class CardComponent implements OnInit {
   firstRow:any[];
   secondRow:any[];
   pictureList:any[];
-  corrects:any[];  
   previous;
   next;
   points:number = 0;
   time: number = 0;
+  awnsers:any[] = [];
 
   constructor(private peopleService:PeopleService, private googleService:GoogleImageService) { }
 
@@ -30,6 +30,7 @@ export class CardComponent implements OnInit {
   private findAll(page){
     this.peopleService.findAll(page).subscribe((data) => {
       this.peopleList = data.results;
+      this.checkPersonOnChangePage();
       this.getPersonsImages();
       this.firstRow = this.peopleList.slice(0,5);
       this.secondRow = this.peopleList.slice(5,10);
@@ -42,7 +43,6 @@ export class CardComponent implements OnInit {
     this.peopleList.forEach((item)=>{
       this.googleService.getPersonImages(item.name).subscribe((data) => {
           item.pic = data.items[0].link;
-          item.blockConfirm = false;
       });
     });
   }
@@ -63,7 +63,8 @@ export class CardComponent implements OnInit {
 
   private generatePersonInfoHTML(person){
     return  `
-      <b>Birthday : </b> ${person.birth_year} <br />
+      <img class="info-pic" src='${person.pic}'><br />
+      <p><b>Birthday : </b> ${person.birth_year} <br />
       <b>Gender : </b> ${person.gender} <br />
       <b>Mass : </b> ${person.mass} <br />
       <b>Height : </b> ${person.height} <br />
@@ -74,13 +75,39 @@ export class CardComponent implements OnInit {
 
   private confirmAwnser(person){
     person.blockConfirm = true;
-    if(person.name === person.awnser){
+    this.awnsers.push(person);
+    if(person.name.toUpperCase() === person.awnser.toUpperCase()){
       this.points += 10;
     }
   }
 
-  public contador(contagem: string) {
-    this.time++;
-    console.log(contagem);
+  private endGame(){
+    swal({
+      title:"Congratulations !",
+      html:this.generateFinalGameModalHTML(),
+      showCloseButton:true,
+    })
+  }
+
+  private generateFinalGameModalHTML(){
+    return `
+      <b>You did : </b>${this.points} points.
+    `
+  }
+
+  private checkPersonOnChangePage(){
+    this.peopleList.forEach(person =>{
+      this.awnsers.forEach(item =>{
+        if(item.name == person.name){
+          this.blockPersonCard(person,item);
+        }
+      })
+    })
+  }
+
+  private blockPersonCard(person,item){
+    person.blockConfirm = true;
+    person.awnser = item.awnser;
   }
 }
+
