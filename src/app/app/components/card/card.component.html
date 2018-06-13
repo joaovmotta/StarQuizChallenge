@@ -1,7 +1,7 @@
 <div class="row">
   <app-timer (onEndTimer)="endGame()"></app-timer>
 </div>
-
+<div>
 <div class="row">
   <div *ngFor="let person of firstRow" class="card col" style="width: 18rem;">
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
@@ -33,4 +33,5 @@
 <div style="text-align:center">
   <button *ngIf="previous != null" (click)="changePage(previous)" class="btn btn-change-page">PREVIOUS</button>
   <button *ngIf="next != null" (click)="changePage(next)" class="btn btn-change-page">NEXT</button>
+</div>
 </div>
