@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment'
 
 @Component({
@@ -8,13 +8,17 @@ import * as moment from 'moment'
 })
 export class TimerComponent implements OnInit {
 
+  @Input() public input: string;
+  @Output() public output: EventEmitter<string> = new EventEmitter<string>();
+
   private timer;
   private time;
 
   constructor() { }
 
   ngOnInit() {
-    this.startTimer("00:02:00");
+    this.startTimer("00:01:00");
+    console.log(this.input);
   }
 
   startTimer(time){
@@ -23,8 +27,24 @@ export class TimerComponent implements OnInit {
     clearInterval(this.timer);
     this.timer = setInterval(()=>{
       seconds--;
+      if(this.checkEndGame(seconds)){
+        this.redirectToEndPage();
+      }
       this.time = this.secondsToTime(seconds);
+      this.output.emit(this.time);
     },1000);
+  }
+
+  checkEndGame(seconds){
+    if(seconds == 0){
+      this.stopTimer();
+      return false;
+    }
+    return true;
+  }
+
+  redirectToEndPage(){
+
   }
 
   stopTimer(){

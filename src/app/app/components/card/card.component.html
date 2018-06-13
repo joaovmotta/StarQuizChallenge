@@ -1,27 +1,35 @@
 <div class="row">
-  <app-timer></app-timer>
+  <app-timer [input]="'texto'" (output)="contador($event)"></app-timer>
 </div>
+
 <div class="row">
-  <div 
-    *ngFor="let person of firstRow" class="card col" style="width: 18rem;"
-    [ngClass]="{'correct':(person.name | uppercase) === (person.resp | uppercase)}">
+  <div *ngFor="let person of firstRow" class="card col" style="width: 18rem;">
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
-      <input [disabled]="(person.name | uppercase) === (person.resp | uppercase)" type="text" class="form-control" [(ngModel)]="person.resp">
+      <div class="row">
+        <input [disabled]="person.blockConfirm"  type="text" class="form-control col-md-8" [(ngModel)]="person.resp">
+        <button (click)="confirmAwnser(person)" [disabled]="!person.resp || person.blockConfirm" class="btn btn-success btn-check col-md-2"><fa name="check"></fa></button>
+        <button (click)="showPersonInfo(person)" class="btn btn-info col-md-2"><fa name="info"></fa></button>
+      </div>
     </div>
   </div>
 </div>
+
 <div class="row">
-  <div *ngFor="let person of secondRow" class="card col" style="width: 18rem;"
-  >
+  <div *ngFor="let person of secondRow" class="card col" style="width: 18rem;">
     <img class="card-img-top" src="{{person.pic}}" alt="Card image cap">
     <div class="card-body">
-      <input [disabled]="(person.name | uppercase) === (person.resp | uppercase)" 
-      type="text" class="form-control" [(ngModel)]="person.resp">
+      <div class="row">
+        <input [disabled]="person.blockConfirm" type="text" class="form-control col-md-8" [(ngModel)]="person.resp">
+        <button (click)="confirmAwnser(person)" [disabled]="!person.resp || person.blockConfirm" 
+        class="btn btn-success btn-check col-md-2"><fa name="check"></fa></button>
+        <button (click)="showPersonInfo(person)" class="btn btn-info col-md-2"><fa name="info"></fa></button>
+      </div>
     </div>
   </div>
 </div>
+
 <div style="text-align:center">
-  <button *ngIf="previous != null " (click)="changePage(previous)" class="btn btn-start">PREVIOUS</button>
-  <button *ngIf="next != null " (click)="changePage(next)" class="btn btn-start">NEXT</button>
+  <button *ngIf="previous != null" (click)="changePage(previous)" class="btn btn-change-page">PREVIOUS</button>
+  <button *ngIf="next != null" (click)="changePage(next)" class="btn btn-change-page">NEXT</button>
 </div>

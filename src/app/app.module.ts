@@ -8,6 +8,7 @@ import { CardComponent } from './app/components/card/card.component';
 import { RoutingModule } from "./app/router/app.router";
 import { HomeComponent } from './app/components/home-component/home.component';
 import { TimerComponent } from './app/components/timer/timer.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,10 @@ import { TimerComponent } from './app/components/timer/timer.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RoutingModule
+    RoutingModule,
+    AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [TimerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
