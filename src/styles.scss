@@ -23,6 +23,7 @@ body{
 
 .btn-start{
     border:3px solid #fadb2d;
+    width:250px;
     padding-top:15ṕx;
     padding-bottom:15px;
     padding-left:25px;
@@ -31,6 +32,17 @@ body{
     color:#fadb2d;
     font-family: "star-wars";
     text-align:center;
+}
+
+.start-text{
+    color:white;
+    font-family:'star-wars';
+}
+
+.start-title{
+    color:#fadb2d;
+    font-family:'star-wars';
+    font-size:16pt;
 }
 
 .btn-start:hover{
