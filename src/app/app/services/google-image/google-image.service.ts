@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GoogleImageService {
   
-  private API_KEY = "HERE COMES YOUR API KEY";
+  private API_KEY = "AIzaSyCp-xzrZojB5f_wQK4__4p3ltYtJeP94pw";
   private cx = "009236995095805591070:nevcjfu5piw";
   private baseUrl = "https://www.googleapis.com/customsearch/v1?q=";
   private endUrl = `&cx=${this.cx}&imgType=face&searchType=image&fields=items%2Flink&key=${this.API_KEY}`;

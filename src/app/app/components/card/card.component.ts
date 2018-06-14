@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PeopleService } from "../../services/people/people.service";
 import { GoogleImageService } from '../../services/google-image/google-image.service';
 import swal from 'sweetalert2';
+import { HtmlTextGenerator } from "../../Util/Util";
+import { Router } from "@angular/router"
 
 
 @Component({
@@ -21,7 +23,7 @@ export class CardComponent implements OnInit {
   time: number = 0;
   awnsers:any[] = [];
 
-  constructor(private peopleService:PeopleService, private googleService:GoogleImageService) { }
+  constructor(private router: Router,private peopleService:PeopleService, private googleService:GoogleImageService) { }
 
   ngOnInit() {
     this.findAll(1);
@@ -52,27 +54,14 @@ export class CardComponent implements OnInit {
   }
 
   private showPersonInfo(person){
-    let html = this.generatePersonInfoHTML(person);
     swal({
       title:"Person Info",
-      html:html,
+      html:HtmlTextGenerator.generatePersonInfoHTML(person),
       showCloseButton:true,
       confirmButtonText:"OK"
     })
   }
-
-  private generatePersonInfoHTML(person){
-    return  `
-      <img class="info-pic" src='${person.pic}'><br />
-      <p><b>Birthday : </b> ${person.birth_year} <br />
-      <b>Gender : </b> ${person.gender} <br />
-      <b>Mass : </b> ${person.mass} <br />
-      <b>Height : </b> ${person.height} <br />
-      <b>Hair Color : </b> ${person.hair_color} <br />
-      <b>Eye Color : </b> ${person.eye_color} <br />
-    `
-  }
-
+  
   private confirmAwnser(person){
     person.blockConfirm = true;
     this.awnsers.push(person);
@@ -84,15 +73,9 @@ export class CardComponent implements OnInit {
   private endGame(){
     swal({
       title:"Congratulations !",
-      html:this.generateFinalGameModalHTML(),
-      showCloseButton:true,
+      html:HtmlTextGenerator.generateFinalGameModalHTML(this.points),
+      showConfirmButton:false
     })
-  }
-
-  private generateFinalGameModalHTML(){
-    return `
-      <b>You did : </b>${this.points} points.
-    `
   }
 
   private checkPersonOnChangePage(){
